@@ -10,7 +10,7 @@ export async function enviarTokenProBackend(token: string) {
       return
     }
 
-    const response = await fetch('http://192.168.1.4:3333/notifications/token', {
+    const response = await fetch('http:// 192.168.3.208:3333/notifications/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -7,7 +7,7 @@ export default function LoginScreen({ navigation }: any) {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://192.168.1.4:3333/api/auth/login", {
+      const response = await fetch("http://192.168.3.208:3333/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cpf, senha }),

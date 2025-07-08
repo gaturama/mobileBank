@@ -12,7 +12,7 @@ export default function PerfilScreen() {
   useEffect(() => {
     async function fetchPerfil() {
       const token = await AsyncStorage.getItem('token')
-      const res = await fetch('http://192.168.1.4:3333/usuario/perfil', {
+      const res = await fetch('http://192.168.3.208:3333/usuario/perfil', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,7 +30,7 @@ export default function PerfilScreen() {
 
   async function atualizarPerfil() {
     const token = await AsyncStorage.getItem('token')
-    const res = await fetch('http://192.168.1.4:3333/usuario/atualizar', {
+    const res = await fetch('http://192.168.3.208:3333/usuario/atualizar', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -47,8 +47,6 @@ export default function PerfilScreen() {
     const data = await res.json()
     alert(data.message || 'Atualizado!')
   }
-
-  if (!perfil) return <Text>Carregando...</Text>
 
   return (
     <View style={styles.container}>

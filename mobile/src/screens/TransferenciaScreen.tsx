@@ -16,7 +16,7 @@ export default function TransferenciaScreen() {
       return
     }
 
-    const res = await fetch('http://192.168.1.4:3333/transferencias', {
+    const res = await fetch('http://192.168.3.208:3333/transferencias', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ export default function TransferenciaScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
+  container: { flex: 1, padding: 16, backgroundColor: 'e7e1df' },
   title: { fontSize: 22, fontWeight: 'bold', marginBottom: 12 },
   input: {
     borderWidth: 1,

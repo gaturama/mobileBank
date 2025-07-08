@@ -20,7 +20,7 @@ export default function ExtratoScreen() {
   useEffect(() => {
     const fetchExtrato = async () => {
       const token = await AsyncStorage.getItem('token')
-      const res = await fetch('http://192.168.1.4:3333/transferencias/extrato', {
+      const res = await fetch('http://192.168.3.208:3333/transferencias/extrato', {
         headers: { Authorization: `Bearer ${token}` },
       })
       const data = await res.json()
@@ -29,8 +29,6 @@ export default function ExtratoScreen() {
     }
     fetchExtrato()
   }, [])
-
-  if (loading) return <ActivityIndicator size="large" color="#000" />
 
   return (
     <View style={styles.container}>

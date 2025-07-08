@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 import { RootStackParamList } from './types'
 import ExtratoScreen from '../screens/ExtratoScreen'
 import TransferenciaScreen from '../screens/TransferenciaScreen'
+import PerfilScreen from '../screens/PerfilScreen'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -17,6 +18,7 @@ export default function StackNavigator() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Extrato" component={ExtratoScreen} />
       <Stack.Screen name="Transferencia" component={TransferenciaScreen} />
+      <Stack.Screen name="Perfil" component={PerfilScreen} />
     </Stack.Navigator>
   )
 }

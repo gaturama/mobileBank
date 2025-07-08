@@ -15,7 +15,7 @@ const AccountSchema = new Schema<IAccount>({
   data_abertura: { type: Date, required: true, default: () => new Date() },
   agencia: { type: String, required: true },
   numero_conta: { type: String, required: true, unique: true },
-  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true},
 })
 
 const Account = model<IAccount>('Account', AccountSchema)

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function PerfilScreen() {
@@ -18,6 +18,8 @@ export default function PerfilScreen() {
         },
       })
       const data = await res.json()
+      console.log('Dados recebidos do perfil:', data)
+
       setPerfil(data)
       setNome(data.nome_completo)
       setEmail(data.email)
@@ -30,7 +32,7 @@ export default function PerfilScreen() {
 
   async function atualizarPerfil() {
     const token = await AsyncStorage.getItem('token')
-    const res = await fetch('http://192.168.3.208:3333/usuario/atualizar', {
+    const res = await fetch('http://192.168.3.208:3333/usuario/perfil', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -43,6 +45,8 @@ export default function PerfilScreen() {
         endereco,
       }),
     })
+
+    Alert.alert('Perfil atualizado!', 'Suas informações foram salvas com sucesso.')
 
     const data = await res.json()
     alert(data.message || 'Atualizado!')

@@ -66,6 +66,6 @@ export default function PerfilScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, gap: 10 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 15 },
+  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 15, color: '#353E67' },
   input: { borderWidth: 1, padding: 10, borderRadius: 8 },
 })

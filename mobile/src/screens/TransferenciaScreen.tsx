@@ -90,12 +90,6 @@ export default function TransferenciaScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: 'e7e1df' },
-  title: { fontSize: 22, fontWeight: 'bold', marginBottom: 12 },
-  input: {
-    borderWidth: 1,
-    borderColor: '#aaa',
-    borderRadius: 6,
-    padding: 8,
-    marginBottom: 12,
-  },
+  title: { fontSize: 22, fontWeight: 'bold', marginBottom: 12, color: '#353E67' },
+  input: { borderWidth: 1, borderColor: '#aaa', borderRadius: 6, padding: 8, marginBottom: 12, }
 })

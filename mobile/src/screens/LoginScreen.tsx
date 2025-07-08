@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text, StyleSheet, Alert } from "react-native";
+import { View, TextInput, Button, Text, StyleSheet, Alert, Image } from "react-native";
 
 export default function LoginScreen({ navigation }: any) {
   const [cpf, setCpf] = useState("");
@@ -28,6 +28,7 @@ export default function LoginScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+      <Image style={styles.imagem} source={require('../assets/images/userIcon.png')}/>
       <Text style={styles.title}>Login</Text>
       <TextInput placeholder="CPF" style={styles.input} value={cpf} onChangeText={setCpf} keyboardType="numeric" />
       <TextInput placeholder="Senha" style={styles.input} value={senha} onChangeText={setSenha} secureTextEntry />
@@ -37,7 +38,8 @@ export default function LoginScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: 'center' },
+  container: { flex: 1, padding: 20, justifyContent: 'center', backgroundColor: '#e7e1df' },
   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, alignSelf: 'center' },
-  input: { borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 15, borderRadius: 5 },
+  input: { borderWidth: 1, borderColor: 'black', padding: 10, marginBottom: 15, borderRadius: 5 },
+  imagem: { padding: 20, width: 60, height: 60, alignSelf: 'center', marginBottom: 20 }
 })

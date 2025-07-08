@@ -13,5 +13,5 @@ export async function gerarNumeroContaUnico(): Promise<string> {
 }
 
 export function gerarAgencia(): string {
-  return '1234' // ou qualquer regra que tu quiser aplicar
+  return '1234' 
 }

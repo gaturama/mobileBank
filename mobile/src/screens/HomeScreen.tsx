@@ -21,7 +21,7 @@ export default function HomeScreen({ route, navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: 'center' },
+  container: { flex: 1, padding: 20, justifyContent: 'center', backgroundColor: '#c1c1c1' },
   title: { fontSize: 26, fontWeight: 'bold', marginBottom: 15, alignSelf: 'center' },
   saldo: { fontSize: 20, marginBottom: 20, alignSelf: 'center' },
   token: { fontWeight: 'bold' },

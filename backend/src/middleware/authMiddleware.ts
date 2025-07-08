@@ -7,6 +7,10 @@ interface DecodedToken {
     email: string
 }
 
+interface AuthenticatedRequest extends Request {
+    user?: DecodedToken
+}
+
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization
     if (!authHeader || !authHeader.startsWith('Bearer ')) {

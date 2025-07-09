@@ -1,9 +1,9 @@
-import { Router } from 'express'
-import { getAccountDetails } from '../controllers/AccountController'
-import { verifyToken } from '../middleware/authMiddleware'
+import { Router } from "express";
+import { getAccountDetails } from "../controllers/AccountController";
+import { verifyToken } from "../middleware/authMiddleware";
 
-const router = Router()
+const router = Router();
 
-router.get('/account', verifyToken, getAccountDetails)
+router.get("/account", verifyToken, getAccountDetails);
 
-export default router
+export default router;

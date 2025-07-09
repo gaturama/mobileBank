@@ -1,14 +1,14 @@
-import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import LoginScreen from '../screens/LoginScreen'
-import RegisterScreen from '../screens/RegisterScreen'
-import HomeScreen from '../screens/HomeScreen'
-import { RootStackParamList } from './types'
-import ExtratoScreen from '../screens/ExtratoScreen'
-import TransferenciaScreen from '../screens/TransferenciaScreen'
-import PerfilScreen from '../screens/PerfilScreen'
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
+import HomeScreen from "../screens/HomeScreen";
+import { RootStackParamList } from "./types";
+import ExtratoScreen from "../screens/ExtratoScreen";
+import TransferenciaScreen from "../screens/TransferenciaScreen";
+import PerfilScreen from "../screens/PerfilScreen";
 
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackNavigator() {
   return (
@@ -20,5 +20,5 @@ export default function StackNavigator() {
       <Stack.Screen name="Transferencia" component={TransferenciaScreen} />
       <Stack.Screen name="Perfil" component={PerfilScreen} />
     </Stack.Navigator>
-  )
+  );
 }

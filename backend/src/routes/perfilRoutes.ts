@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { verifyToken } from '../middleware/authMiddleware';
-import { getPerfil } from '../controllers/PerfilController';
+import { Router } from "express";
+import { verifyToken } from "../middleware/authMiddleware";
+import { getPerfil } from "../controllers/PerfilController";
 
-const router = Router()
+const router = Router();
 
-router.get('/', verifyToken, getPerfil)
+router.get("/", verifyToken, getPerfil);
 
-export default router
+export default router;

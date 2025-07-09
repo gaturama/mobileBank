@@ -1,10 +1,13 @@
-import { Router } from 'express'
-import { verifyToken } from '../middleware/authMiddleware'
-import { getDadosUsuario, atualizarDadosUsuario } from '../controllers/UserController'
+import { Router } from "express";
+import { verifyToken } from "../middleware/authMiddleware";
+import {
+  getDadosUsuario,
+  atualizarDadosUsuario,
+} from "../controllers/UserController";
 
-const router = Router()
+const router = Router();
 
-router.get('/usuario/me', verifyToken, getDadosUsuario)
-router.put('/usuario/atualizar', verifyToken, atualizarDadosUsuario)
+router.get("/usuario/me", verifyToken, getDadosUsuario);
+router.put("/usuario/atualizar", verifyToken, atualizarDadosUsuario);
 
-export default router
+export default router;

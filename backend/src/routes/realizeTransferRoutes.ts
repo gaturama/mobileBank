@@ -1,9 +1,9 @@
-import { Router } from 'express'
-import { verifyToken } from '../middleware/authMiddleware'
-import { realizarTransferencia } from '../controllers/realizeTransferController'
+import { Router } from "express";
+import { verifyToken } from "../middleware/authMiddleware";
+import { realizarTransferencia } from "../controllers/realizeTransferController";
 
-const router = Router()
+const router = Router();
 
-router.post('/transferencias/ted-doc', verifyToken, realizarTransferencia)
+router.post("/transferencias/ted-doc", verifyToken, realizarTransferencia);
 
-export default router
+export default router;

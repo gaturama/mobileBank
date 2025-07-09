@@ -1,6 +1,6 @@
-Athenas Bank
+Athenas Bank⚔🏛️
 --
-This project aims to build a complete banking application using technologies such as React Native, TypeScript, MongoDB, Postman, REST API, and JWT for secure authentication.
+📌 This project aims to build a complete banking application using technologies such as React Native, TypeScript, MongoDB, Postman, REST API, and JWT for secure authentication.
 
 - The app includes the following screens and features:
 

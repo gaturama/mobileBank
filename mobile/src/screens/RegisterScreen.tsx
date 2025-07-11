@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, Text, StyleSheet, Alert } from "react-native";
+import { View, TextInput, Text, StyleSheet, Alert, TouchableOpacity} from "react-native";
 
 export default function RegisterScreen({ navigation }: any) {
   const [nome_completo, setNomeCompleto] = useState("");
@@ -89,13 +89,15 @@ export default function RegisterScreen({ navigation }: any) {
         value={endereco}
         onChangeText={setEndereco}
       />
-      <Button title="Cadastrar" onPress={handleRegister} />
+      <TouchableOpacity style={styles.botao} onPress={handleRegister}>
+        <Text style={styles.textBotao}>Cadastrar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: "center" },
+  container: { flex: 1, padding: 20, justifyContent: "center", backgroundColor: "#e7e1df" },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -109,5 +111,16 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 15,
     borderRadius: 5,
+  },
+  botao: {
+    backgroundColor: "#353E67",
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  textBotao: {
+    color: "white",
+    fontSize: 16,
   },
 });

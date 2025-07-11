@@ -19,6 +19,8 @@ export default function HomeScreen({ route, navigation }: Props) {
     navigation.navigate("Transferencia");
   };
 
+  
+
   const [mostrarSaldo, setMostrarSaldo] = useState(false);
 
   const toggleSaldo = () => setMostrarSaldo((prev: any) => !prev);

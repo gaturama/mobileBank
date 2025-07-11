@@ -1,31 +1,26 @@
 {
   "cli": {
-    "version": ">= 6.0.0"
+    "version": ">= 6.3.0",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
       "android": {
-        "env": {
-          "JAVA_HOME": "/usr/lib/jvm/java-11-openjdk"
-        }
+        "image": "latest"
       }
     },
     "preview": {
       "distribution": "internal",
       "android": {
-        "env": {
-          "JAVA_HOME": "/usr/lib/jvm/java-11-openjdk"
-        }
+        "image": "latest"
       }
     },
     "production": {
       "autoIncrement": true,
       "android": {
-        "env": {
-          "JAVA_HOME": "/usr/lib/jvm/java-11-openjdk"
-        }
+        "image": "latest"
       }
     }
   },

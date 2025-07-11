@@ -1,5 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 
 import {
@@ -16,6 +17,10 @@ export default function LoginScreen({ navigation }: any) {
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  
+  const handleRegister = () => {
+    navigation.navigate("Register")
+  }
 
   const toggleMostrarSenha = () => {
     setMostrarSenha((prev) => !prev);
@@ -89,6 +94,9 @@ export default function LoginScreen({ navigation }: any) {
       </View>
       <TouchableOpacity style={styles.botao} onPress={handleLogin}>
         <Text style={styles.textBotao}>Acessar</Text>
+      </TouchableOpacity>
+       <TouchableOpacity style={styles.botao} onPress={handleRegister}>
+        <Text style={styles.textBotao}>Cadastro</Text>
       </TouchableOpacity>
     </View>
   );

@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function enviarTokenProBackend(token: string) {
   try {
-    const jwt = await AsyncStorage.getItem("token"); // ou onde você guarda o JWT
+    const jwt = await AsyncStorage.getItem("token");
 
     if (!jwt) {
       console.warn(

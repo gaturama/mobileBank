@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function PerfilScreen() {
@@ -12,7 +12,8 @@ export default function PerfilScreen() {
   useEffect(() => {
     async function fetchPerfil() {
       const token = await AsyncStorage.getItem("token");
-      const res = await fetch("http://192.168.3.208:3333/usuario/perfil", {
+      const res = await fetch("http://192.168.3.208:3333/usuario/me", {
+        method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -32,7 +33,7 @@ export default function PerfilScreen() {
 
   async function atualizarPerfil() {
     const token = await AsyncStorage.getItem("token");
-    const res = await fetch("http://192.168.3.208:3333/usuario/perfil", {
+    const res = await fetch("http://192.168.3.208:3333/usuario/atualizar", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -40,9 +41,9 @@ export default function PerfilScreen() {
       },
       body: JSON.stringify({
         nome_completo: nome,
-        email,
-        telefone,
-        endereco,
+        email: email,
+        telefone: telefone,
+        endereco: endereco,
       }),
     });
 

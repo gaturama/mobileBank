@@ -36,4 +36,4 @@ mongoose
   })
   .catch((err) => {
     console.error("Erro ao conectar no MongoDB:", err);
-  });
+});

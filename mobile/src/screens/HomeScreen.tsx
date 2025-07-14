@@ -19,8 +19,6 @@ export default function HomeScreen({ route, navigation }: Props) {
     navigation.navigate("Transferencia");
   };
 
-  
-
   const [mostrarSaldo, setMostrarSaldo] = useState(false);
 
   const toggleSaldo = () => setMostrarSaldo((prev: any) => !prev);
@@ -31,7 +29,7 @@ export default function HomeScreen({ route, navigation }: Props) {
         style={styles.imagem}
         source={require("../assets/images/logoIcon.png")}
       />
-      <Text style={styles.title}>Bem-vindo ao Athenas Bank</Text>
+      <Text style={styles.title}>Bem-vindo ao Athena Bank</Text>
       <Text style={styles.saldo}>
         Seu saldo é: {mostrarSaldo ? "R$ 25.000,00" : ""}
       </Text>

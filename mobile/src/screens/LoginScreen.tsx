@@ -1,26 +1,16 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
-
-import {
-  View,
-  TextInput,
-  Text,
-  StyleSheet,
-  Alert,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, TextInput, Text, StyleSheet, Alert, Image, TouchableOpacity } from "react-native";
 
 export default function LoginScreen({ navigation }: any) {
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
-  
+
   const handleRegister = () => {
-    navigation.navigate("Register")
-  }
+    navigation.navigate("Register");
+  };
 
   const toggleMostrarSenha = () => {
     setMostrarSenha((prev) => !prev);
@@ -73,29 +63,29 @@ export default function LoginScreen({ navigation }: any) {
         keyboardType="numeric"
       />
       <View style={styles.containerSenha}>
-      <TextInput
-        autoCorrect={false}
-        autoCapitalize="none"
-        secureTextEntry={!mostrarSenha}
-        placeholder="Senha"
-        style={styles.inputSenha}
-        value={senha}
-        onChangeText={setSenha}
-        keyboardType="numeric"
-      />
-
-      <TouchableOpacity onPress={toggleMostrarSenha} style={styles.icone}>
-        <Ionicons
-          name={mostrarSenha ? "eye-off" : "eye"}
-          size={22}
-          color="#353E67"
+        <TextInput
+          autoCorrect={false}
+          autoCapitalize="none"
+          secureTextEntry={!mostrarSenha}
+          placeholder="Senha"
+          style={styles.inputSenha}
+          value={senha}
+          onChangeText={setSenha}
+          keyboardType="numeric"
         />
-      </TouchableOpacity>
+
+        <TouchableOpacity onPress={toggleMostrarSenha} style={styles.icone}>
+          <Ionicons
+            name={mostrarSenha ? "eye-off" : "eye"}
+            size={22}
+            color="#353E67"
+          />
+        </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.botao} onPress={handleLogin}>
         <Text style={styles.textBotao}>Acessar</Text>
       </TouchableOpacity>
-       <TouchableOpacity style={styles.botao} onPress={handleRegister}>
+      <TouchableOpacity style={styles.botao} onPress={handleRegister}>
         <Text style={styles.textBotao}>Cadastro</Text>
       </TouchableOpacity>
     </View>
@@ -143,20 +133,20 @@ const styles = StyleSheet.create({
   },
   inputSenha: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 10,
   },
   icone: {
-    position: 'absolute',
+    position: "absolute",
     right: 10,
-    top: '40%',
+    top: "40%",
     transform: [{ translateY: -11 }],
     padding: 5,
-  }, 
+  },
   containerSenha: {
-    position: 'relative',
-    marginBottom: 15, 
-  }
+    position: "relative",
+    marginBottom: 15,
+  },
 });

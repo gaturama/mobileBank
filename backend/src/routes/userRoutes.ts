@@ -1,9 +1,6 @@
 import { Router } from "express";
 import { verifyToken } from "../middleware/authMiddleware";
-import {
-  getDadosUsuario,
-  atualizarDadosUsuario,
-} from "../controllers/UserController";
+import {getDadosUsuario, atualizarDadosUsuario} from "../controllers/UserController";
 
 const router = Router();
 

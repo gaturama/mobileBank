@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } fr
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TransferenciaScreen() {
-  const [contaDestinoId, setContaDestinoId] = useState("");
+  const [numeroContaDestino, setnumeroContaDestino] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
   const [tipoTransferencia, setTipoTransferencia] = useState("PIX"); 
@@ -11,19 +11,19 @@ export default function TransferenciaScreen() {
   const realizarTransferencia = async () => {
     const token = await AsyncStorage.getItem("token");
 
-    if (!contaDestinoId || !valor) {
+    if (!numeroContaDestino || !valor) {
       Alert.alert("Erro", "Preencha conta destino e valor");
       return;
     }
 
-    const res = await fetch("http://192.168.3.208:3333/transferencias", {
+    const res = await fetch("http://192.168.3.208:3333/api/auth/transferencias", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        contaDestinoId,
+        numero_conta_destino: numeroContaDestino,
         valor: Number(valor),
         descricao,
         tipo_transferencia: tipoTransferencia,
@@ -34,7 +34,7 @@ export default function TransferenciaScreen() {
 
     if (res.ok) {
       Alert.alert("Sucesso", data.message);
-      setContaDestinoId("");
+      setnumeroContaDestino("");
       setValor("");
       setDescricao("");
     } else {
@@ -49,9 +49,9 @@ export default function TransferenciaScreen() {
       <Text>Conta Destino:</Text>
       <TextInput
         style={styles.input}
-        value={contaDestinoId}
-        onChangeText={setContaDestinoId}
-        placeholder="ID da conta destino"
+        value={numeroContaDestino}
+        onChangeText={setnumeroContaDestino}
+        placeholder="Número da conta destino"
       />
 
       <Text>Valor:</Text>
@@ -72,7 +72,7 @@ export default function TransferenciaScreen() {
       />
 
       <Text>Tipo de Transferência:</Text>
-      <View style={{ flexDirection: "row", marginVertical: 8, justifyContent:'space-evenly' }}>
+      <View style={{ flexDirection: "row", marginVertical: 10, justifyContent:'space-evenly' }}>
         {["PIX", "TED", "DOC"].map((tipo) => (
           <Button
             key={tipo}
@@ -83,7 +83,7 @@ export default function TransferenciaScreen() {
         ))}
       </View>
 
-     <TouchableOpacity style={styles.botao}>
+     <TouchableOpacity style={styles.botao} onPress={realizarTransferencia}>
         <Text style={styles.textBotao}>Transferir</Text>
      </TouchableOpacity>
     </View>

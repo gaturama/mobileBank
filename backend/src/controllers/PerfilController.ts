@@ -3,6 +3,7 @@ import User from "../models/User";
 import Account from "../models/Account";
 
 export const getPerfil = async (req: Request, res: Response) => {
+  console.log("PEGOU A ROTA DE PERFIL")
   try {
     const userId = req.user?.id;
     if (!userId)

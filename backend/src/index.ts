@@ -20,7 +20,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api", protectedRoutes);
 app.use("/api", accountRoutes);
-app.use("/api/perfil", perfilRoutes);
+app.use("/api/auth/usuario", perfilRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Mobile Bank está online!");

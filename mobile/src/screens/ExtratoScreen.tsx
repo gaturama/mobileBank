@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-} from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Transfer = {
@@ -26,7 +21,7 @@ export default function ExtratoScreen() {
     const fetchExtrato = async () => {
       const token = await AsyncStorage.getItem("token");
       const res = await fetch(
-        "http://192.168.3.208:3333/transferencias/extrato",
+        "http://192.168.3.208:3333/transferencias/api/auth/ted-doc",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
   transferItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "black",
     marginBottom: 8,
   },
 });

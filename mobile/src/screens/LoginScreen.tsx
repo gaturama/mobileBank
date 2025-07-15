@@ -2,6 +2,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { View, TextInput, Text, StyleSheet, Alert, Image, TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({ navigation }: any) {
   const [cpf, setCpf] = useState("");
@@ -33,6 +34,7 @@ export default function LoginScreen({ navigation }: any) {
 
       if (response.ok) {
         const data = await response.json();
+        await AsyncStorage.setItem("token", data.token);
         setCpf("");
         setSenha("");
         Alert.alert("Sucesso", "Login realizado!");

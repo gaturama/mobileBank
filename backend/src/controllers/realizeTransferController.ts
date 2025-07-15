@@ -12,12 +12,12 @@ export const realizarTransferencia = async (req: Request, res: Response) => {
     if (!userId)
       return res.status(401).json({ error: "Usuário não autenticado" });
 
-    const { valor, contaDestinoId, descricao, tipo_transferencia } = req.body;
+    const { valor, numero_conta_destino, agencia_destino = "0001", descricao, tipo_transferencia } = req.body;
 
     if (!valor || valor <= 0)
       return res.status(400).json({ error: "Valor inválido" });
-    if (!contaDestinoId)
-      return res.status(400).json({ error: "Conta destino obrigatória" });
+    if (!numero_conta_destino)
+      return res.status(400).json({ error: "Número da conta destino obrigatória" });
     if (!["TED", "DOC"].includes(tipo_transferencia)) {
       return res.status(400).json({ error: "Tipo de transferência inválido" });
     }
@@ -33,7 +33,7 @@ export const realizarTransferencia = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Saldo insuficiente" });
     }
 
-    const contaDestino = await Account.findById(contaDestinoId).session(
+    const contaDestino = await Account.findOne({numero_conta: numero_conta_destino, agencia: agencia_destino}).session(
       session
     );
     if (!contaDestino) {

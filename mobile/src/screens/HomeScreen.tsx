@@ -63,7 +63,7 @@
         <Text style={styles.saldo}>
           Seu saldo é: {mostrarSaldo ? `R$  ${saldo?.toFixed(2)}` : "******"}
         </Text>
-        <TouchableOpacity onPress={toggleSaldo} style={styles.olho}>
+        {/* <TouchableOpacity onPress={toggleSaldo} style={styles.olho}>
         <Ionicons name={mostrarSaldo ? 'eye-off' : 'eye' } size={24} color="#353E67"></Ionicons>
         </TouchableOpacity>
         <TouchableOpacity style={styles.botao} onPress={handlePerfil}>
@@ -74,7 +74,7 @@
         </TouchableOpacity>
         <TouchableOpacity style={styles.botao} onPress={handleTransferencia}>
           <Text style={styles.textBotao}>Transferência</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   }

@@ -45,12 +45,8 @@ export const register = async (
 
     const novaConta = new Account({
       userId: novoUsuario._id,
-      saldo: 0,
       numero_conta: Math.floor(100000 + Math.random() * 900000),
       agencia: "0001",
-      tipo: "corrente",
-      status: "ativa",
-      criada_em: new Date(),
     });
 
     await novaConta.save();

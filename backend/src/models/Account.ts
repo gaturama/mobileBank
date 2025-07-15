@@ -10,7 +10,7 @@ export interface IAccount extends Document {
 }
 
 const AccountSchema = new Schema<IAccount>({
-  saldo: { type: Number, required: true, default: 0 },
+  saldo: { type: Number, required: true, default: 25000 },
   status: {
     type: String,
     enum: ["ativa", "inativa"],

@@ -8,6 +8,7 @@ import protectedRoutes from "./routes/protectedRoutes";
 import accountRoutes from "./routes/accountRoutes";
 import perfilRoutes from "./routes/perfilRoutes";
 import balanceRoutes from "./routes/balanceRoutes";
+import extratoRoutes from "./routes/StatementeRoutes";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use("/api", protectedRoutes);
 app.use("/api", accountRoutes);
 app.use("/api/auth/usuario", perfilRoutes);
 app.use("/api/auth", balanceRoutes);
+app.use("/api/auth/", extratoRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Mobile Bank está online!");

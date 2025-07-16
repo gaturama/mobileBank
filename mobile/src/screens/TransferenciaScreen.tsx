@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Alert,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TransferenciaScreen() {
   const [numeroContaDestino, setnumeroContaDestino] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [tipoTransferencia, setTipoTransferencia] = useState("PIX"); 
+  const [tipoTransferencia, setTipoTransferencia] = useState("PIX");
 
   const realizarTransferencia = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -16,29 +24,36 @@ export default function TransferenciaScreen() {
       return;
     }
 
-    const res = await fetch("http://192.168.3.208:3333/api/auth/transferencias", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        numero_conta_destino: numeroContaDestino,
-        valor: Number(valor),
-        descricao,
-        tipo_transferencia: tipoTransferencia,
-      }),
-    });
+    const urlBase = "http://192.168.3.208:3333/api/auth/transferencias";
+    const url = tipoTransferencia === "PIX" ? `${urlBase}/pix` : urlBase;
 
-    const data = await res.json();
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          numero_conta_destino: numeroContaDestino,
+          valor: Number(valor),
+          descricao,
+          tipo_transferencia: tipoTransferencia,
+        }),
+      });
 
-    if (res.ok) {
-      Alert.alert("Sucesso", data.message);
-      setnumeroContaDestino("");
-      setValor("");
-      setDescricao("");
-    } else {
-      Alert.alert("Erro", data.error || "Algo deu errado");
+      const data = await res.json();
+
+      if (res.ok) {
+        Alert.alert("Sucesso", data.message);
+        setnumeroContaDestino("");
+        setValor("");
+        setDescricao("");
+      } else {
+        Alert.alert("Erro", data.error || "Algo deu errado");
+      }
+    } catch (error) {
+      Alert.alert("Erro", "Erro na requisição, tenta de novo!");
     }
   };
 
@@ -72,7 +87,13 @@ export default function TransferenciaScreen() {
       />
 
       <Text>Tipo de Transferência:</Text>
-      <View style={{ flexDirection: "row", marginVertical: 10, justifyContent:'space-evenly' }}>
+      <View
+        style={{
+          flexDirection: "row",
+          marginVertical: 10,
+          justifyContent: "space-evenly",
+        }}
+      >
         {["PIX", "TED", "DOC"].map((tipo) => (
           <Button
             key={tipo}
@@ -83,9 +104,9 @@ export default function TransferenciaScreen() {
         ))}
       </View>
 
-     <TouchableOpacity style={styles.botao} onPress={realizarTransferencia}>
+      <TouchableOpacity style={styles.botao} onPress={realizarTransferencia}>
         <Text style={styles.textBotao}>Transferir</Text>
-     </TouchableOpacity>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -110,10 +131,10 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     alignItems: "center",
-    marginTop: 10
+    marginTop: 10,
   },
-  textBotao:{
-    color: 'white',
+  textBotao: {
+    color: "white",
     fontSize: 16,
-  }
+  },
 });

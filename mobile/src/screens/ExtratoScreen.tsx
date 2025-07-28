@@ -67,7 +67,8 @@ export default function ExtratoScreen() {
           data={transfers}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
-            const isEntrada = item.tipo_transferencia.toLowerCase().includes("recebido") || item.id_conta_destino === "userContaIdAqui"; 
+            const tipo = item?.tipo_transferencia?.toLowerCase() || "";
+            const isEntrada = tipo.includes("recebido") || tipo.includes("recebida"); 
             return (
               <View style={styles.transferItem}>
                 <Text style={[styles.valor, { color: isEntrada ? "green" : "red" }]}>

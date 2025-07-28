@@ -10,6 +10,7 @@ import perfilRoutes from "./routes/perfilRoutes";
 import balanceRoutes from "./routes/balanceRoutes";
 import extratoRoutes from "./routes/StatementeRoutes";
 import realizeTransferRoutes from "./routes/realizeTransferRoutes"; 
+import { realizarPix } from "./controllers/TransferController";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use("/api/auth/usuario", perfilRoutes);
 app.use("/api/auth", balanceRoutes);
 app.use("/api/auth/", extratoRoutes);
 app.use("/api/auth", realizeTransferRoutes);
+app.use("/api/auth", realizarPix);
 
 app.get("/", (req, res) => {
   res.send("API Mobile Bank está online!");

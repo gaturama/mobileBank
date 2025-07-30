@@ -88,12 +88,12 @@ export default function ExtratoScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: "#e7e1df" },
+  container: { flex: 1, padding: 16, backgroundColor: "#EAEAEA" },
   title: {
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 12,
-    color: "#353E67",
+    color: "#228B22",
   },
   transferItem: {
     padding: 10,

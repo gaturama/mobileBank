@@ -99,7 +99,7 @@ export default function TransferenciaScreen() {
             key={tipo}
             title={tipo}
             onPress={() => setTipoTransferencia(tipo)}
-            color={tipoTransferencia === tipo ? "#353E67" : "gray"}
+            color={tipoTransferencia === tipo ? "#006400" : "gray"}
           />
         ))}
       </View>
@@ -112,12 +112,12 @@ export default function TransferenciaScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: "#e7e1df" },
+  container: { flex: 1, padding: 16, backgroundColor: "#EAEAEA" },
   title: {
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 12,
-    color: "#353E67",
+    color: "#228B22 ",
   },
   input: {
     borderWidth: 1,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   botao: {
-    backgroundColor: "#353E67",
+    backgroundColor: "#228B22",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",

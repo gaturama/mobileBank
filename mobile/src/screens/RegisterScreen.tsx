@@ -97,13 +97,13 @@ export default function RegisterScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: "center", backgroundColor: "#e7e1df" },
+  container: { flex: 1, padding: 20, justifyContent: "center", backgroundColor: "#EAEAEA" },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     alignSelf: "center",
-    color: "#353E67",
+    color: "#228B22",
   },
   input: {
     borderWidth: 1,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   botao: {
-    backgroundColor: "#353E67",
+    backgroundColor: "#228B22",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",

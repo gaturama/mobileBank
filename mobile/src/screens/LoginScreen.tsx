@@ -80,7 +80,7 @@ export default function LoginScreen({ navigation }: any) {
           <Ionicons
             name={mostrarSenha ? "eye-off" : "eye"}
             size={22}
-            color="#353E67"
+            color="#006400"
           />
         </TouchableOpacity>
       </View>
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: "center",
-    backgroundColor: "#e7e1df",
+    backgroundColor: "#EAEAEA ",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     alignSelf: "center",
-    color: "#353E67",
+    color: "#228B22",
   },
   input: {
     borderWidth: 1,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   botao: {
-    backgroundColor: "#353E67",
+    backgroundColor: "#228B22",
     padding: 12,
     borderRadius: 8,
     alignItems: "center",

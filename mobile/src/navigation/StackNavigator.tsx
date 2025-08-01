@@ -1,20 +1,26 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./types";
+import { TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
-import { RootStackParamList } from "./types";
 import ExtratoScreen from "../screens/ExtratoScreen";
 import TransferenciaScreen from "../screens/TransferenciaScreen";
 import PerfilScreen from "../screens/PerfilScreen";
-import { TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator 
+    initialRouteName="Login"
+    screenOptions={{
+      headerShown: false,
+      animation: "slide_from_right",
+    }}>
+
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen 

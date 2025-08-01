@@ -1,10 +1,24 @@
+import * as LocalAuthentication from "expo-local-authentication";
+import React, { useCallback, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useCallback, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { View, TextInput, Text, StyleSheet, Alert, Image, TouchableOpacity } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({ navigation }: any) {
+
+  async function verifyAuthentication() {
+    const compatible = await LocalAuthentication.hasHardwareAsync();
+    console.log(compatible)
+
+    const types = await LocalAuthentication.supportedAuthenticationTypesAsync();
+    console.log(types.map((type) => LocalAuthentication.AuthenticationType[type]));
+  }
+
+  useEffect(() => {
+    verifyAuthentication();
+  }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -26,6 +40,7 @@ export default function LoginScreen({ navigation }: any) {
 
   const handleLogin = async () => {
     try {
+      if (cpf && senha) {
       const response = await fetch("http://192.168.3.208:3333/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,16 +52,38 @@ export default function LoginScreen({ navigation }: any) {
         await AsyncStorage.setItem("token", data.token);
         setCpf("");
         setSenha("");
-        Alert.alert("Sucesso", "Login realizado!");
         navigation.navigate("Home", { token: data.token });
       } else {
         const data = await response.json();
         Alert.alert("Erro", data.error || "Erro no login");
       }
+    } else {
+      const isBiometricEnrolled = LocalAuthentication.isEnrolledAsync();
+
+      if (!isBiometricEnrolled) {
+       return Alert.alert('Biometria não cadastrada', 'Por favor, cadastre sua biometria antes de continuar.');
+      }
+
+      const auth = await LocalAuthentication.authenticateAsync({
+        promptMessage: "Login com biometria",
+        fallbackLabel: "Biometria não reconhecida",
+      });
+
+      if (auth.success) {
+        const token = await AsyncStorage.getItem("token");
+        if (token) {
+          setIsAuthenticated(true);
+          navigation.navigate("Home", { token });
+        } else {
+          Alert.alert("Erro", "Token não encontrado. Por favor, faça login com cpf e senha.");
+        }
+      }
+    }
+
     } catch (error) {
       Alert.alert("Erro", "Não foi possível conectar ao servidor");
     }
-  };
+  }
 
   return (
     <View style={styles.container}>

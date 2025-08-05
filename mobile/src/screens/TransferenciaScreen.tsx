@@ -129,9 +129,11 @@ const styles = StyleSheet.create({
   botao: {
     backgroundColor: "#228B22",
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 25,
     alignItems: "center",
-    marginTop: 10,
+    alignSelf: "center",
+    marginTop: 20,
+    width: "100%"
   },
   textBotao: {
     color: "white",

@@ -14,27 +14,32 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackNavigator() {
   return (
-    <Stack.Navigator 
-    initialRouteName="Login"
-    screenOptions={{
-      headerShown: false,
-      animation: "slide_from_right",
-    }}>
-
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        headerShown: false,
+        animation: "slide_from_right",
+      }}
+    >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen 
-      name="Home" 
-      component={HomeScreen} 
-      options={({ navigation }) => ({
-        title: "Athena Bank",
-        headerShown: true,
-        headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate("Perfil")}>
-            <Ionicons name="person-circle-outline" size={28} color="#353E67" style={{ marginRight: 15}}/>
-          </TouchableOpacity>
-        )
-      })}
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={({ navigation }) => ({
+          title: "Athena Bank",
+          headerShown: true,
+          headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate("Perfil")}>
+              <Ionicons
+                name="person-circle-outline"
+                size={28}
+                color="#353E67"
+                style={{ marginRight: 15 }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen name="Extrato" component={ExtratoScreen} />
       <Stack.Screen name="Transferencia" component={TransferenciaScreen} />

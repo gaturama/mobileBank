@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Transfer = {
@@ -52,7 +58,9 @@ export default function ExtratoScreen() {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="large" color="#353E67" />
-        <Text style={{ marginTop: 10, color: "#353E67"}}>Carregando extrato...</Text>
+        <Text style={{ marginTop: 10, color: "#353E67" }}>
+          Carregando extrato...
+        </Text>
       </View>
     );
   }
@@ -68,15 +76,20 @@ export default function ExtratoScreen() {
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
             const tipo = item?.tipo_transferencia?.toLowerCase() || "";
-            const isEntrada = tipo.includes("recebido") || tipo.includes("recebida"); 
+            const isEntrada =
+              tipo.includes("recebido") || tipo.includes("recebida");
             return (
               <View style={styles.transferItem}>
-                <Text style={[styles.valor, { color: isEntrada ? "green" : "red" }]}>
+                <Text
+                  style={[styles.valor, { color: isEntrada ? "green" : "red" }]}
+                >
                   {isEntrada ? "+" : "-"} {formatCurrency(item.valor)}
                 </Text>
                 <Text>{item.tipo_transferencia}</Text>
                 <Text>{item.descricao || "Sem descrição"}</Text>
-                <Text>{new Date(item.data_transferencia).toLocaleString()}</Text>
+                <Text>
+                  {new Date(item.data_transferencia).toLocaleString()}
+                </Text>
                 <Text>Status: {item.status}</Text>
               </View>
             );
@@ -107,13 +120,13 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 5,
   },
-   noData: {
+  noData: {
     textAlign: "center",
     marginTop: 20,
     fontSize: 16,
     color: "#777",
   },
-    valor: {
+  valor: {
     fontWeight: "bold",
     fontSize: 18,
   },

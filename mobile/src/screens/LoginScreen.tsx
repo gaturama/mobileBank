@@ -3,16 +3,36 @@ import React, { useCallback, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { View, TextInput, Text, StyleSheet, Alert, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  Alert,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
 export default function LoginScreen({ navigation }: any) {
-
   async function verifyAuthentication() {
     const compatible = await LocalAuthentication.hasHardwareAsync();
-    console.log(compatible)
+    console.log(compatible);
+const isBiometricEnrolled = LocalAuthentication.isEnrolledAsync();
 
+      if (!isBiometricEnrolled) {
+        Alert.alert('Biometria não cadastrada', 'Por favor, cadastre sua biometria antes de continuar.');
+      }
+
+      const auth = await LocalAuthentication.authenticateAsync({
+        promptMessage: "Login com biometria",
+        fallbackLabel: "Biometria não reconhecida",
+      })
+
+      setIsAuthenticated(auth.success);
     const types = await LocalAuthentication.supportedAuthenticationTypesAsync();
-    console.log(types.map((type) => LocalAuthentication.AuthenticationType[type]));
+    console.log(
+      types.map((type) => LocalAuthentication.AuthenticationType[type])
+    );
   }
 
   useEffect(() => {
@@ -41,49 +61,57 @@ export default function LoginScreen({ navigation }: any) {
   const handleLogin = async () => {
     try {
       if (cpf && senha) {
-      const response = await fetch("http://192.168.3.208:3333/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cpf, senha }),
-      });
+        const response = await fetch(
+          "http://192.168.3.208:3333/api/auth/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ cpf, senha }),
+          }
+        );
 
-      if (response.ok) {
-        const data = await response.json();
-        await AsyncStorage.setItem("token", data.token);
-        setCpf("");
-        setSenha("");
-        navigation.navigate("Home", { token: data.token });
-      } else {
-        const data = await response.json();
-        Alert.alert("Erro", data.error || "Erro no login");
-      }
-    } else {
-      const isBiometricEnrolled = LocalAuthentication.isEnrolledAsync();
-
-      if (!isBiometricEnrolled) {
-       return Alert.alert('Biometria não cadastrada', 'Por favor, cadastre sua biometria antes de continuar.');
-      }
-
-      const auth = await LocalAuthentication.authenticateAsync({
-        promptMessage: "Login com biometria",
-        fallbackLabel: "Biometria não reconhecida",
-      });
-
-      if (auth.success) {
-        const token = await AsyncStorage.getItem("token");
-        if (token) {
-          setIsAuthenticated(true);
-          navigation.navigate("Home", { token });
+        if (response.ok) {
+          const data = await response.json();
+          await AsyncStorage.setItem("token", data.token);
+          setCpf("");
+          setSenha("");
+          navigation.navigate("Home", { token: data.token });
         } else {
-          Alert.alert("Erro", "Token não encontrado. Por favor, faça login com cpf e senha.");
+          const data = await response.json();
+          Alert.alert("Erro", data.error || "Erro no login");
+        }
+      } else {
+        const isBiometricEnrolled = LocalAuthentication.isEnrolledAsync();
+
+        if (!isBiometricEnrolled) {
+          return Alert.alert(
+            "Biometria não cadastrada",
+            "Por favor, cadastre sua biometria antes de continuar."
+          );
+        }
+
+        const auth = await LocalAuthentication.authenticateAsync({
+          promptMessage: "Login com biometria",
+          fallbackLabel: "Biometria não reconhecida",
+        });
+
+        if (auth.success) {
+          const token = await AsyncStorage.getItem("token");
+          if (token) {
+            setIsAuthenticated(true);
+            navigation.navigate("Home", { token });
+          } else {
+            Alert.alert(
+              "Erro",
+              "Token não encontrado. Por favor, faça login com cpf e senha."
+            );
+          }
         }
       }
-    }
-
     } catch (error) {
       Alert.alert("Erro", "Não foi possível conectar ao servidor");
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -147,10 +175,10 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#7a7a7aff",
     padding: 10,
     marginBottom: 15,
-    borderRadius: 5,
+    borderRadius: 20,
   },
   imagem: {
     padding: 20,
@@ -162,9 +190,11 @@ const styles = StyleSheet.create({
   botao: {
     backgroundColor: "#228B22",
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 25,
     alignItems: "center",
+    alignSelf: "center",
     marginTop: 10,
+    width: "100%"
   },
   textBotao: {
     color: "white",
@@ -172,8 +202,8 @@ const styles = StyleSheet.create({
   },
   inputSenha: {
     borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 5,
+    borderColor: "#7a7a7aff",
+    borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 10,
   },

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, StyleSheet, Alert, TouchableOpacity} from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 
 export default function RegisterScreen({ navigation }: any) {
   const [nome_completo, setNomeCompleto] = useState("");
@@ -97,7 +104,12 @@ export default function RegisterScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: "center", backgroundColor: "#EAEAEA" },
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: "center",
+    backgroundColor: "#EAEAEA",
+  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -107,17 +119,19 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#7a7a7aff",
     padding: 10,
     marginBottom: 15,
-    borderRadius: 5,
+    borderRadius: 20,
   },
   botao: {
     backgroundColor: "#228B22",
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 25,
     alignItems: "center",
+    alignSelf: "center",
     marginTop: 10,
+    width: "100%"
   },
   textBotao: {
     color: "white",

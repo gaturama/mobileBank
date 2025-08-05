@@ -8,14 +8,14 @@ import {
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
-export default function HomeScreen({ route, navigation }: Props) {
+export default function HomeScreen({ navigation }: Props) {
   const [mostrarSaldo, setMostrarSaldo] = useState(false);
   const [saldo, setSaldo] = useState<number | null>(null);
 
@@ -125,9 +125,11 @@ const styles = StyleSheet.create({
   botao: {
     backgroundColor: "#228B22",
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 25,
     alignItems: "center",
+    alignSelf: "center",
     marginTop: 10,
+    width: "90%"
   },
   textBotao: {
     color: "white",

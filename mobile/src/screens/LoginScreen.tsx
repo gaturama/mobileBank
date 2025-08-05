@@ -15,20 +15,23 @@ import {
 
 export default function LoginScreen({ navigation }: any) {
   async function verifyAuthentication() {
+    const isBiometricEnrolled = LocalAuthentication.isEnrolledAsync();
     const compatible = await LocalAuthentication.hasHardwareAsync();
     console.log(compatible);
-const isBiometricEnrolled = LocalAuthentication.isEnrolledAsync();
 
-      if (!isBiometricEnrolled) {
-        Alert.alert('Biometria não cadastrada', 'Por favor, cadastre sua biometria antes de continuar.');
-      }
+    if (!isBiometricEnrolled) {
+      Alert.alert(
+        "Biometria não cadastrada",
+        "Por favor, cadastre sua biometria antes de continuar."
+      );
+    }
 
-      const auth = await LocalAuthentication.authenticateAsync({
-        promptMessage: "Login com biometria",
-        fallbackLabel: "Biometria não reconhecida",
-      })
+    const auth = await LocalAuthentication.authenticateAsync({
+      promptMessage: "Login com biometria",
+      fallbackLabel: "Biometria não reconhecida",
+    });
 
-      setIsAuthenticated(auth.success);
+    setIsAuthenticated(auth.success);
     const types = await LocalAuthentication.supportedAuthenticationTypesAsync();
     console.log(
       types.map((type) => LocalAuthentication.AuthenticationType[type])
@@ -194,7 +197,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     marginTop: 10,
-    width: "100%"
+    width: "100%",
   },
   textBotao: {
     color: "white",

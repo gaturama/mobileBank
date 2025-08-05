@@ -85,9 +85,6 @@ export default function HomeScreen({ navigation }: Props) {
           color="#353E67"
         ></Ionicons>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botao} onPress={handlePerfil}>
-        <Text style={styles.textBotao}>Perfil</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.botao} onPress={handleExtrato}>
         <Text style={styles.textBotao}>Extrato</Text>
       </TouchableOpacity>

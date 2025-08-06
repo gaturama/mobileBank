@@ -3,12 +3,13 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   Alert,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { styles } from "../styles/stylesPerfil";
 
 export default function PerfilScreen() {
   const [perfil, setPerfil] = useState<any>(null);
@@ -16,7 +17,6 @@ export default function PerfilScreen() {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [endereco, setEndereco] = useState("");
-  const [dataNascimento, setDataNascimento] = useState("");
   const [agencia, setAgencia] = useState("");
   const [numeroConta, setNumeroConta] = useState("");
   const [saldo, setSaldo] = useState("");
@@ -46,9 +46,6 @@ export default function PerfilScreen() {
           setEmail(data.user.email);
           setTelefone(data.user.telefone);
           setEndereco(data.user.endereco);
-          const nascimento = new Date(data.user.data_nascimento);
-          const formattedDate = nascimento.toLocaleDateString("pt-BR");
-          setDataNascimento(formattedDate);
           setAgencia(data.conta?.agencia || "");
           setNumeroConta(data.conta?.numero_conta || "");
           setSaldo(data.conta?.saldo || 0);
@@ -82,7 +79,6 @@ export default function PerfilScreen() {
             email,
             telefone,
             endereco,
-            data_nascimento: dataNascimento,
           }),
         }
       );
@@ -95,7 +91,6 @@ export default function PerfilScreen() {
         setEmail(data.email);
         setTelefone(data.telefone);
         setEndereco(data.endereco);
-        setDataNascimento(data.data_nascimento);
         Alert.alert("Sucesso", "Perfil atualizado com sucesso!");
       } else {
         const errorData = await res.json();
@@ -133,13 +128,6 @@ export default function PerfilScreen() {
         value={endereco}
         onChangeText={setEndereco}
       />
-      <Text style={styles.label}>Data de Nascimento</Text>
-      <TextInput
-        style={styles.input}
-        value={dataNascimento}
-        onChangeText={setDataNascimento}
-        placeholder="DD/MM/AAAA"
-      />
       <TouchableOpacity style={styles.botao} onPress={atualizarPerfil}>
         <Text style={styles.textBotao}>Atualizar Perfil</Text>
       </TouchableOpacity>
@@ -155,41 +143,3 @@ export default function PerfilScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, gap: 10, backgroundColor: "#EAEAEA" },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 15,
-    color: "#228B22",
-  },
-  input: { 
-    borderWidth: 1, 
-    padding: 10, 
-    borderRadius: 20
-  },
-  botao: {
-    backgroundColor: "#228B22",
-    padding: 12,
-    borderRadius: 25,
-    alignItems: "center",
-    alignSelf: "center",
-    marginTop: 20,
-    width: "100%"
-  },
-  textBotao: {
-    color: "white",
-    fontSize: 16,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-    color: "#228B22",
-  },
-  linha: {
-    height: 1,
-    backgroundColor: "#ccc",
-    marginVertical: 20,
-  },
-});
